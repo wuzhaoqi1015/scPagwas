@@ -318,7 +318,7 @@ Single_data$scPagwas.gPAS.score<-scPagwas.gPAS.score
 This step is identical to the later steps in Solution 1.
 
 ```{r eval = FALSE}
-data_mat <- GetAssayData(Single_data, slot = "data", assay = "RNA")
+data_mat <- GetAssayData(Single_data, layer = "data", assay = "RNA")
 PCC<-scPagwas::Corr_Random(data_mat,
                            scPagwas.gPAS.score,
                            seed=1234,

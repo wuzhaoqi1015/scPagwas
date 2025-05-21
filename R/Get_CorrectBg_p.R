@@ -11,7 +11,7 @@
 #' @return correct_pdf
 #' @export
 Get_CorrectBg_p<-function(Single_data,scPagwas.TRS.Score, iters_singlecell,n_topgenes,scPagwas_topgenes,assay="RNA"){
-    gene_matrix <- GetAssayData(Single_data, slot = "data", assay = assay)
+    gene_matrix <- GetAssayData(Single_data, layer = "data", assay = assay)
     mat_ctrl_raw_score <- matrix(0, nrow =ncol(gene_matrix), ncol = iters_singlecell)
     dic_ctrl_list <- list()
     pb <- txtProgressBar(style = 3)

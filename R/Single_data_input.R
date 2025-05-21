@@ -62,7 +62,7 @@ Single_data_input <- function(Pagwas,
 
   Pagwas$Celltype_anno <- Celltype_anno
 
-  Pagwas$data_mat <- GetAssayData(Single_data, slot = "data", assay = assay)
+  Pagwas$data_mat <- GetAssayData(Single_data, layer = "data", assay = assay)
 
   merge_scexpr <- Seurat::AggregateExpression(Single_data, assays = assay)[[assay]]
 
