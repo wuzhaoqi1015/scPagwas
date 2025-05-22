@@ -173,8 +173,9 @@ Pathway_pcascore_run <- function(Pagwas = NULL,
 
   # 打印 pca_cell_df 的维度
   cat("pca_cell_df 的维度：", dim(pca_cell_df), "\n")
+  cat("pca_cell_df 的列名：\n")
   print(colnames(pca_cell_df))
-  
+
   # 检查是否存在空列
   empty_columns <- sapply(pca_scoremat, function(col) all(is.na(col) | col == ""))
   if (any(empty_columns)) {
