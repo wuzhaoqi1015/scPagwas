@@ -184,13 +184,6 @@ Pathway_pcascore_run <- function(Pagwas = NULL,
   options(bigmemory.allow.dimnames = TRUE)
   Pagwas$pca_scCell_mat <- data.matrix(pca_scCell_mat)
 
-  cat("Pagwas$merge_scexpr 的维度：", dim(Pagwas$merge_scexpr), "\n")
-  cat("pca_cell_df 的维度：", dim(pca_cell_df), "\n")
-
-  # 打印 Pagwas$merge_scexpr 的结构
-  cat("Pagwas$merge_scexpr 的列名：\n")
-  print(colnames(Pagwas$merge_scexpr))
-
   colnames(Pagwas$merge_scexpr) <- colnames(pca_cell_df)
 
   Pagwas$VariableFeatures <- intersect(

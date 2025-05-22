@@ -64,32 +64,10 @@ Single_data_input <- function(Pagwas,
 
   Pagwas$data_mat <- GetAssayData(Single_data, layer = "data", assay = assay)
 
-  # 修复BUG
+  # 修复BUG：group.by默认为ident，而
+  Single_data$ident <- Idents(Single_data) 
 
-  # 获取分组变量
-  ident_info <- Idents(Single_data)
-
-  # 手动按分组变量聚合
-  grouped_expr <- tapply(seq_len(ncol(Pagwas$data_mat)), ident_info, function(indices) {
-    rowMeans(Pagwas$data_mat[, indices, drop = FALSE])
-  })
-
-  # 转换为数据框
-  grouped_expr_df <- do.call(cbind, grouped_expr)
-
-  # 设置行名和列名
-  rownames(grouped_expr_df) <- rownames(Pagwas$data_mat)
-  colnames(grouped_expr_df) <- unique(ident_info)
-
-  # 检查结果
-  cat("手动聚合矩阵的维度：", dim(grouped_expr_df), "\n")
-  cat("手动聚合矩阵的列名：\n")
-  print(colnames(grouped_expr_df))
-
-  merge_scexpr <-grouped_expr_df
-
-  # 禁用bug
-  # merge_scexpr <- Seurat::AggregateExpression(Single_data, assays = assay)[[assay]]
+  merge_scexpr <- Seurat::AggregateExpression(Single_data, assays = assay)[[assay]]
 
   # 5.VariableFeatures
 
