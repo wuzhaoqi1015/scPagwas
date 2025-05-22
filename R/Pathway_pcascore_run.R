@@ -188,8 +188,8 @@ Pathway_pcascore_run <- function(Pagwas = NULL,
     print(names(empty_columns)[empty_columns])
   }
 
-  cat("pca_scoremat[-1]：\n")
-  print(colnames(pca_scoremat)[-1])
+  # cat("pca_scoremat[-1]：\n")
+  # print(colnames(pca_scoremat)[-1])
 
   # 修复pca_cell_df的列长度与pca_scoremat不匹配时的bug，兼容，无需重新命名
   # colnames(pca_cell_df) <- colnames(pca_scoremat)[-1]
