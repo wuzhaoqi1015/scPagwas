@@ -289,7 +289,7 @@ scPagwas_main <- function(Pagwas = NULL,
     Pagwas$rawPathway_list <- Pathway_list
   } else if (class(Pagwas) != "list") {
     stop("Error:The class for Pagwas is wrong! Should be NULL,
-         list or Seurat class.")
+          list or Seurat class.")
   }
 
   #############################
