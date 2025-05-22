@@ -161,10 +161,6 @@ Pathway_pcascore_run <- function(Pagwas = NULL,
   }
   rownames(pca_cell_df) <- pca_scoremat$name
 
-  dim(pca_scoremat)
-  colnames(pca_scoremat)
-  dim(pca_cell_df)
-
   # 打印 pca_scoremat 的维度和列名
   cat("pca_scoremat 的维度：", dim(pca_scoremat), "\n")
   cat("pca_scoremat 的列名：\n")
@@ -173,6 +169,16 @@ Pathway_pcascore_run <- function(Pagwas = NULL,
   # 检查是否包含 "name" 列
   if (!"name" %in% colnames(pca_scoremat)) {
     stop("`pca_scoremat` 中缺少 'name' 列！")
+  }
+
+  # 打印 pca_cell_df 的维度
+  cat("pca_cell_df 的维度：", dim(pca_cell_df), "\n")
+
+  # 检查是否存在空列
+  empty_columns <- sapply(pca_scoremat, function(col) all(is.na(col) | col == ""))
+  if (any(empty_columns)) {
+    cat("以下列为空：\n")
+    print(names(empty_columns)[empty_columns])
   }
 
   colnames(pca_cell_df) <- colnames(pca_scoremat)[-1]
