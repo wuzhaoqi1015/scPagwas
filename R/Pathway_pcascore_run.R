@@ -188,6 +188,12 @@ Pathway_pcascore_run <- function(Pagwas = NULL,
     print(names(empty_columns)[empty_columns])
   }
 
+  # 检查数据类型
+  # 检查每列的数据类型
+  cat("pca_scoremat每列数据类型：\n")
+  print(sapply(pca_scoremat, class))
+  cat("pca_cell_df每列数据类型：\n")
+  print(sapply(pca_cell_df, class))
   # cat("pca_scoremat[-1]：\n")
   # print(colnames(pca_scoremat)[-1])
 
