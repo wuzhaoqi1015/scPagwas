@@ -161,44 +161,7 @@ Pathway_pcascore_run <- function(Pagwas = NULL,
   }
   rownames(pca_cell_df) <- pca_scoremat$name
 
-  # 打印 pca_scoremat 的维度和列名
-  cat("pca_scoremat 的维度：", dim(pca_scoremat), "\n")
-  cat("pca_scoremat 的列名：\n")
-  print(colnames(pca_scoremat))
-
-  # 检查是否包含 "name" 列
-  if (!"name" %in% colnames(pca_scoremat)) {
-    stop("`pca_scoremat` 中缺少 'name' 列！")
-  }
-
-  # 打印 pca_cell_df 的维度
-  cat("pca_cell_df 的维度：", dim(pca_cell_df), "\n")
-  cat("pca_cell_df 的列名：\n")
-  print(colnames(pca_cell_df))
-
-  #   # 检查是否包含 "name" 列
-  # if (!"name" %in% colnames(pca_cell_df)) {
-  #   stop("`pca_scoremat` 中缺少 'name' 列！")
-  # }
-
-  # 检查是否存在空列
-  empty_columns <- sapply(pca_scoremat, function(col) all(is.na(col) | col == ""))
-  if (any(empty_columns)) {
-    cat("以下列为空：\n")
-    print(names(empty_columns)[empty_columns])
-  }
-
-  # 检查数据类型
-  # 检查每列的数据类型
-  cat("pca_scoremat每列数据类型：\n")
-  print(sapply(pca_scoremat, class))
-  cat("pca_cell_df每列数据类型：\n")
-  print(sapply(pca_cell_df, class))
-  # cat("pca_scoremat[-1]：\n")
-  # print(colnames(pca_scoremat)[-1])
-
-  # 修复pca_cell_df的列长度与pca_scoremat不匹配时的bug，兼容，无需重新命名
-  # colnames(pca_cell_df) <- colnames(pca_scoremat)[-1]
+  colnames(pca_cell_df) <- colnames(pca_scoremat)[-1]
 
   rm(pca_scoremat)
 
@@ -223,6 +186,10 @@ Pathway_pcascore_run <- function(Pagwas = NULL,
 
   cat("Pagwas$merge_scexpr 的维度：", dim(Pagwas$merge_scexpr), "\n")
   cat("pca_cell_df 的维度：", dim(pca_cell_df), "\n")
+
+  # 打印 Pagwas$merge_scexpr 的结构
+  cat("Pagwas$merge_scexpr 的列名：\n")
+  print(colnames(Pagwas$merge_scexpr))
 
   colnames(Pagwas$merge_scexpr) <- colnames(pca_cell_df)
 
