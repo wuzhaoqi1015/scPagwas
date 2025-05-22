@@ -189,12 +189,17 @@ Pathway_pcascore_run <- function(Pagwas = NULL,
     print(names(empty_columns)[empty_columns])
   }
 
+  cat("pca_scoremat[-1]：\n")
+  print(colnames(pca_scoremat)[-1])
+
   # 修复pca_cell_df的列长度与pca_scoremat不匹配时的bug，兼容
 
   # colnames(pca_cell_df) <- colnames(pca_scoremat)[-1]
   # 设置行名和列名
   rownames(pca_cell_df) <- pca_scoremat$name  # 将 name 列的值设置为行名
   colnames(pca_cell_df) <- colnames(pca_scoremat)[-1]  # 设置列名为细胞类型
+
+  
 
   rm(pca_scoremat)
 
