@@ -176,11 +176,10 @@ Pathway_pcascore_run <- function(Pagwas = NULL,
   cat("pca_cell_df 的列名：\n")
   print(colnames(pca_cell_df))
 
-    # 检查是否包含 "name" 列
-  if (!"name" %in% colnames(pca_cell_df)) {
-    stop("`pca_scoremat` 中缺少 'name' 列！")
-  }
-
+  #   # 检查是否包含 "name" 列
+  # if (!"name" %in% colnames(pca_cell_df)) {
+  #   stop("`pca_scoremat` 中缺少 'name' 列！")
+  # }
 
   # 检查是否存在空列
   empty_columns <- sapply(pca_scoremat, function(col) all(is.na(col) | col == ""))
