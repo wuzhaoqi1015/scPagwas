@@ -160,6 +160,21 @@ Pathway_pcascore_run <- function(Pagwas = NULL,
     pca_cell_df <- pca_scoremat[, -1]
   }
   rownames(pca_cell_df) <- pca_scoremat$name
+
+  dim(pca_scoremat)
+  colnames(pca_scoremat)
+  dim(pca_cell_df)
+
+  # 打印 pca_scoremat 的维度和列名
+  cat("pca_scoremat 的维度：", dim(pca_scoremat), "\n")
+  cat("pca_scoremat 的列名：\n")
+  print(colnames(pca_scoremat))
+
+  # 检查是否包含 "name" 列
+  if (!"name" %in% colnames(pca_scoremat)) {
+    stop("`pca_scoremat` 中缺少 'name' 列！")
+  }
+
   colnames(pca_cell_df) <- colnames(pca_scoremat)[-1]
 
   rm(pca_scoremat)
